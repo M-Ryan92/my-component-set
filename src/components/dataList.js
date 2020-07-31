@@ -6,7 +6,7 @@
   jsx: (
     <div className={classes.root}>
       {(() => {
-        const { env, getProperty, useGetAll, ModelProvider, useFilter } = B;
+        const { env, getProperty, useAllQuery, ModelProvider, useFilter } = B;
         const [page, setPage] = useState(1);
         const {
           take,
@@ -101,7 +101,7 @@
 
         const { loading, error, data, refetch } =
           model &&
-          useGetAll(model, {
+          useAllQuery(model, {
             rawFilter: where,
             skip: page ? (page - 1) * rowsPerPage : 0,
             take: rowsPerPage,
