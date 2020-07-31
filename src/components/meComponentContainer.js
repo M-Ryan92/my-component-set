@@ -1,7 +1,7 @@
 (() => ({
   name: 'MeComponentContainer',
   type: 'BODY_COMPONENT',
-  allowedTypes: [],
+  allowedTypes: ['CONTENT_COMPONENT'],
   orientation: 'HORIZONTAL',
   jsx: (
     <div>
@@ -23,6 +23,7 @@
           return (
             <div>
               <p>Fetched a record with ID: {id}.</p>
+              {children}
             </div>
           );
         }}
