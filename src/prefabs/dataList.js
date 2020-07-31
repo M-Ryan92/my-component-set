@@ -1,145 +1,145 @@
 (() => ({
-  name: "DataList",
-  icon: "DataList",
-  category: "DATA",
+  name: 'DataList',
+  icon: 'DataList',
+  category: 'DATA',
   structure: [
     {
-      name: "DataList",
+      name: 'DataList',
       options: [
         {
-          value: "",
-          label: "Model",
-          key: "model",
-          type: "MODEL"
+          value: '',
+          label: 'Model',
+          key: 'model',
+          type: 'MODEL',
         },
         {
           value: {},
-          label: "Filter",
-          key: "filter",
-          type: "FILTER",
+          label: 'Filter',
+          key: 'filter',
+          type: 'FILTER',
           configuration: {
-            dependsOn: "model"
-          }
+            dependsOn: 'model',
+          },
         },
         {
-          type: "PROPERTY",
-          label: "Order by",
-          key: "orderBy",
-          value: "",
+          type: 'PROPERTY',
+          label: 'Order by',
+          key: 'orderBy',
+          value: '',
           configuration: {
-            dependsOn: "model"
-          }
+            dependsOn: 'model',
+          },
         },
         {
-          type: "CUSTOM",
-          label: "Order",
-          key: "order",
-          value: "asc",
+          type: 'CUSTOM',
+          label: 'Order',
+          key: 'order',
+          value: 'asc',
           configuration: {
-            as: "BUTTONGROUP",
-            dataType: "string",
+            as: 'BUTTONGROUP',
+            dataType: 'string',
             condition: {
-              type: "HIDE",
-              option: "orderBy",
-              comparator: "EQ",
-              value: ""
+              type: 'HIDE',
+              option: 'orderBy',
+              comparator: 'EQ',
+              value: '',
             },
             allowedInput: [
-              { name: "Ascending", value: "asc" },
-              { name: "Descending", value: "desc" }
-            ]
-          }
+              { name: 'Ascending', value: 'asc' },
+              { name: 'Descending', value: 'desc' },
+            ],
+          },
         },
         {
-          value: "5",
-          label: "Rows per page (max 50)",
-          key: "take",
-          type: "NUMBER"
+          value: '5',
+          label: 'Rows per page (max 50)',
+          key: 'take',
+          type: 'NUMBER',
         },
         {
-          type: "CUSTOM",
-          label: "Type",
-          key: "type",
-          value: "list",
+          type: 'CUSTOM',
+          label: 'Type',
+          key: 'type',
+          value: 'list',
           configuration: {
-            as: "BUTTONGROUP",
-            dataType: "string",
+            as: 'BUTTONGROUP',
+            dataType: 'string',
             allowedInput: [
               {
-                name: "List",
-                value: "list"
+                name: 'List',
+                value: 'list',
               },
               {
-                name: "Grid",
-                value: "grid"
-              }
-            ]
-          }
+                name: 'Grid',
+                value: 'grid',
+              },
+            ],
+          },
         },
         {
-          type: "SIZE",
-          label: "Min Width",
-          key: "width",
-          value: "200px",
+          type: 'SIZE',
+          label: 'Min Width',
+          key: 'width',
+          value: '200px',
           configuration: {
-            as: "UNIT",
+            as: 'UNIT',
             condition: {
-              type: "SHOW",
-              option: "type",
-              comparator: "EQ",
-              value: "grid"
-            }
-          }
+              type: 'SHOW',
+              option: 'type',
+              comparator: 'EQ',
+              value: 'grid',
+            },
+          },
         },
         {
-          type: "SIZE",
-          label: "Gap",
-          key: "gap",
-          value: "1rem",
+          type: 'SIZE',
+          label: 'Gap',
+          key: 'gap',
+          value: '1rem',
           configuration: {
-            as: "UNIT",
+            as: 'UNIT',
             condition: {
-              type: "SHOW",
-              option: "type",
-              comparator: "EQ",
-              value: "grid"
-            }
-          }
+              type: 'SHOW',
+              option: 'type',
+              comparator: 'EQ',
+              value: 'grid',
+            },
+          },
         },
         {
-          value: ["0rem", "0rem", "M", "0rem"],
-          label: "Outer space",
-          key: "outerSpacing",
-          type: "SIZES"
+          value: ['0rem', '0rem', 'M', '0rem'],
+          label: 'Outer space',
+          key: 'outerSpacing',
+          type: 'SIZES',
         },
         {
-          label: "Hide pagination",
-          key: "hidePagination",
+          label: 'Hide pagination',
+          key: 'hidePagination',
           value: false,
-          type: "TOGGLE"
+          type: 'TOGGLE',
         },
         {
-          value: "",
-          label: "Hide built-in search field",
-          key: "hideSearch",
-          type: "TOGGLE"
+          value: '',
+          label: 'Hide built-in search field',
+          key: 'hideSearch',
+          type: 'TOGGLE',
         },
         {
-          value: "built-in",
-          label: "Error message",
-          key: "showError",
-          type: "CUSTOM",
+          value: 'built-in',
+          label: 'Error message',
+          key: 'showError',
+          type: 'CUSTOM',
           configuration: {
-            as: "BUTTONGROUP",
-            dataType: "string",
+            as: 'BUTTONGROUP',
+            dataType: 'string',
             allowedInput: [
-              { name: "Built in", value: "built-in" },
-              { name: "Interaction", value: "interaction" }
-            ]
-          }
-        }
+              { name: 'Built in', value: 'built-in' },
+              { name: 'Interaction', value: 'interaction' },
+            ],
+          },
+        },
       ],
-      descendants: []
-    }
-  ]
+      descendants: [],
+    },
+  ],
 }))();

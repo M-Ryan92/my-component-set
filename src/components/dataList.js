@@ -1,8 +1,8 @@
 (() => ({
-  name: "DataList",
-  type: "CONTAINER_COMPONENT",
-  allowedTypes: ["BODY_COMPONENT", "CONTAINER_COMPONENT", "CONTENT_COMPONENT"],
-  orientation: "HORIZONTAL",
+  name: 'DataList',
+  type: 'CONTAINER_COMPONENT',
+  allowedTypes: ['BODY_COMPONENT', 'CONTAINER_COMPONENT', 'CONTENT_COMPONENT'],
+  orientation: 'HORIZONTAL',
   jsx: (
     <div className={classes.root}>
       {(() => {
@@ -16,38 +16,38 @@
           model,
           showError,
           order,
-          orderBy
+          orderBy,
         } = options;
 
         const rowsPerPage = parseInt(take, 10) || 50;
 
         const isEmpty = children.length === 0;
-        const isDev = env === "dev";
+        const isDev = env === 'dev';
         const isPristine = isEmpty && isDev;
-        const displayError = showError === "built-in";
+        const displayError = showError === 'built-in';
 
         const builderLayout = () => (
           <>
-            <div className={type === "grid" ? classes.grid : ""}>
+            <div className={type === 'grid' ? classes.grid : ''}>
               <div
                 className={[
-                  isEmpty ? classes.empty : "",
-                  isPristine ? classes.pristine : ""
-                ].join(" ")}
+                  isEmpty ? classes.empty : '',
+                  isPristine ? classes.pristine : '',
+                ].join(' ')}
               >
-                {isPristine ? "Data List" : children}
+                {isPristine ? 'Data List' : children}
               </div>
 
               {Array.from(Array(rowsPerPage - 1).keys()).map(key => (
                 <div
                   key={key}
                   className={[
-                    isDev ? classes.pristine : "",
+                    isDev ? classes.pristine : '',
                     classes.empty,
-                    classes.placeholder
-                  ].join(" ")}
+                    classes.placeholder,
+                  ].join(' ')}
                 >
-                  {isDev ? "Dynamic Item" : ""}
+                  {isDev ? 'Dynamic Item' : ''}
                 </div>
               ))}
             </div>
@@ -65,7 +65,7 @@
 
         const deepMerge = (...objects) => {
           const isObject = item =>
-            item && typeof item === "object" && !Array.isArray(item);
+            item && typeof item === 'object' && !Array.isArray(item);
 
           return objects.reduce((accumulator, object) => {
             Object.keys(object).forEach(key => {
@@ -106,12 +106,12 @@
             skip: page ? (page - 1) * rowsPerPage : 0,
             take: rowsPerPage,
             variables: {
-              ...(orderBy ? { sort: { relation: sort } } : {})
-            }
+              ...(orderBy ? { sort: { relation: sort } } : {}),
+            },
           });
 
         useEffect(() => {
-          B.defineFunction("Refetch", () => refetch());
+          B.defineFunction('Refetch', () => refetch());
         }, []);
 
         const canvasLayout = () => {
@@ -120,12 +120,12 @@
           }
 
           if (loading) {
-            B.triggerEvent("onLoad", loading);
+            B.triggerEvent('onLoad', loading);
             return <div className={classes.skeleton} />;
           }
 
           if (error && !displayError) {
-            B.triggerEvent("onError", error.message);
+            B.triggerEvent('onError', error.message);
           }
           if (error && displayError) {
             return <span>{error.message}</span>;
@@ -136,14 +136,14 @@
           const hasResults = resultCount > 0;
 
           if (hasResults) {
-            B.triggerEvent("onSuccess", results);
+            B.triggerEvent('onSuccess', results);
           } else {
-            B.triggerEvent("onNoResults");
+            B.triggerEvent('onNoResults');
           }
 
           return (
             <>
-              <div className={type === "grid" ? classes.grid : ""}>
+              <div className={type === 'grid' ? classes.grid : ''}>
                 {results.map(item => (
                   <ModelProvider key={item.id} value={item} id={model}>
                     {children}
@@ -174,26 +174,26 @@
             }
           }, [totalCount]);
 
-          const totalText = env === "dev" ? "[total]" : totalCount;
+          const totalText = env === 'dev' ? '[total]' : totalCount;
 
           return (
             <>
               <span>
                 {firstItem + 1}
                 {firstItem + 1 !== totalCount &&
-                  ` - ${firstItem + resultCount}`}{" "}
+                  ` - ${firstItem + resultCount}`}{' '}
                 of {totalText}
               </span>
               <div className={classes.pagination}>
-                {typeof currentPage !== "undefined" && currentPage > 1 ? (
+                {typeof currentPage !== 'undefined' && currentPage > 1 ? (
                   <button
                     className={classes.button}
                     type="button"
                     onClick={() => setPage(v => v - 1)}
                   >
                     <span
-                      className={[classes.arrow, "zmdi zmdi-chevron-left"].join(
-                        " "
+                      className={[classes.arrow, 'zmdi zmdi-chevron-left'].join(
+                        ' ',
                       )}
                     />
                   </button>
@@ -202,11 +202,11 @@
                     className={[
                       classes.arrow,
                       classes.arrowDisabled,
-                      "zmdi zmdi-chevron-left"
-                    ].join(" ")}
+                      'zmdi zmdi-chevron-left',
+                    ].join(' ')}
                   />
                 )}
-                {(typeof currentPage === "undefined" ? 1 : currentPage) <
+                {(typeof currentPage === 'undefined' ? 1 : currentPage) <
                 totalCount / rowsPerPage ? (
                   <button
                     className={classes.button}
@@ -216,8 +216,8 @@
                     <span
                       className={[
                         classes.arrow,
-                        "zmdi zmdi-chevron-right"
-                      ].join(" ")}
+                        'zmdi zmdi-chevron-right',
+                      ].join(' ')}
                     />
                   </button>
                 ) : (
@@ -225,8 +225,8 @@
                     className={[
                       classes.arrow,
                       classes.arrowDisabled,
-                      "zmdi zmdi-chevron-right"
-                    ].join(" ")}
+                      'zmdi zmdi-chevron-right',
+                    ].join(' ')}
                   />
                 )}
               </div>
@@ -240,8 +240,8 @@
   ),
   styles: B => theme => {
     const style = new B.Styling(theme);
-    const getSpacing = (idx, device = "Mobile") =>
-      idx === "0" ? "0rem" : style.getSpacing(idx, device);
+    const getSpacing = (idx, device = 'Mobile') =>
+      idx === '0' ? '0rem' : style.getSpacing(idx, device);
 
     return {
       root: {
@@ -252,134 +252,134 @@
         marginBottom: ({ options: { outerSpacing } }) =>
           getSpacing(outerSpacing[2]),
         marginLeft: ({ options: { outerSpacing } }) =>
-          getSpacing(outerSpacing[3])
+          getSpacing(outerSpacing[3]),
       },
       header: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexDirection: "row-reverse",
-        width: "100%"
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row-reverse',
+        width: '100%',
       },
       button: {
-        background: "transparent",
-        border: "none",
-        display: "inline-block",
+        background: 'transparent',
+        border: 'none',
+        display: 'inline-block',
         padding: 0,
         margin: 0,
-        cursor: "pointer",
-        "&:active": {
-          outline: "none"
-        }
+        cursor: 'pointer',
+        '&:active': {
+          outline: 'none',
+        },
       },
       footer: {
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-        padding: ["0.75rem", 0]
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: ['0.75rem', 0],
       },
       placeholder: {
-        opacity: "0.4"
+        opacity: '0.4',
       },
       pagination: {
-        marginLeft: "1rem"
+        marginLeft: '1rem',
       },
       arrow: {
-        padding: "1rem",
-        fontSize: "1.625rem",
-        color: "#000",
-        textDecoration: "none"
+        padding: '1rem',
+        fontSize: '1.625rem',
+        color: '#000',
+        textDecoration: 'none',
       },
-      arrowDisabled: { color: "#ccc" },
+      arrowDisabled: { color: '#ccc' },
       skeleton: {
-        height: `calc(${style.getFont("Body1").Mobile} * 1.2)`,
+        height: `calc(${style.getFont('Body1').Mobile} * 1.2)`,
         [`@media ${B.mediaMinWidth(600)}`]: {
-          height: `calc(${style.getFont("Body1").Portrait} * 1.2)`
+          height: `calc(${style.getFont('Body1').Portrait} * 1.2)`,
         },
         [`@media ${B.mediaMinWidth(960)}`]: {
-          height: `calc(${style.getFont("Body1").Landscape} * 1.2)`
+          height: `calc(${style.getFont('Body1').Landscape} * 1.2)`,
         },
         [`@media ${B.mediaMinWidth(1280)}`]: {
-          height: `calc(${style.getFont("Body1").Desktop} * 1.2)`
+          height: `calc(${style.getFont('Body1').Desktop} * 1.2)`,
         },
-        backgroundColor: "#eee",
+        backgroundColor: '#eee',
         borderRadius: 8,
-        overflow: "hidden",
-        "&::after": {
-          display: "block",
-          width: "100%",
-          height: "100%",
+        overflow: 'hidden',
+        '&::after': {
+          display: 'block',
+          width: '100%',
+          height: '100%',
           backgroundImage:
-            "linear-gradient(90deg, #eee 25%, #fff 50%, #eee 75%)",
-          backgroundSize: "200% 100%",
-          backgroundRepeat: "no-repeat",
-          backgroundPositionX: "150%",
-          borderRadius: `calc(${style.getFont("Body2").Landscape} / 2)`,
+            'linear-gradient(90deg, #eee 25%, #fff 50%, #eee 75%)',
+          backgroundSize: '200% 100%',
+          backgroundRepeat: 'no-repeat',
+          backgroundPositionX: '150%',
+          borderRadius: `calc(${style.getFont('Body2').Landscape} / 2)`,
           content: '""',
-          animation: "loading 1.5s infinite"
-        }
+          animation: 'loading 1.5s infinite',
+        },
       },
       [`@media ${B.mediaMinWidth(600)}`]: {
         root: {
           marginTop: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[0], "Portrait"),
+            getSpacing(outerSpacing[0], 'Portrait'),
           marginRight: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[1], "Portrait"),
+            getSpacing(outerSpacing[1], 'Portrait'),
           marginBottom: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[2], "Portrait"),
+            getSpacing(outerSpacing[2], 'Portrait'),
           marginLeft: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[3], "Portrait")
-        }
+            getSpacing(outerSpacing[3], 'Portrait'),
+        },
       },
       [`@media ${B.mediaMinWidth(960)}`]: {
         root: {
           marginTop: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[0], "Landscape"),
+            getSpacing(outerSpacing[0], 'Landscape'),
           marginRight: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[1], "Landscape"),
+            getSpacing(outerSpacing[1], 'Landscape'),
           marginBottom: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[2], "Landscape"),
+            getSpacing(outerSpacing[2], 'Landscape'),
           marginLeft: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[3], "Landscape")
-        }
+            getSpacing(outerSpacing[3], 'Landscape'),
+        },
       },
       [`@media ${B.mediaMinWidth(1280)}`]: {
         root: {
           marginTop: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[0], "Desktop"),
+            getSpacing(outerSpacing[0], 'Desktop'),
           marginRight: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[1], "Desktop"),
+            getSpacing(outerSpacing[1], 'Desktop'),
           marginBottom: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[2], "Desktop"),
+            getSpacing(outerSpacing[2], 'Desktop'),
           marginLeft: ({ options: { outerSpacing } }) =>
-            getSpacing(outerSpacing[3], "Desktop")
-        }
+            getSpacing(outerSpacing[3], 'Desktop'),
+        },
       },
       grid: {
-        display: "grid",
+        display: 'grid',
         gridTemplateColumns: ({ options: { width } }) =>
           `repeat(auto-fit, minmax(${width}, 1fr))`,
-        gridGap: ({ options: { gap } }) => `${gap}`
+        gridGap: ({ options: { gap } }) => `${gap}`,
       },
       empty: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "4rem",
-        height: "100%",
-        width: "100%",
-        fontSize: "0.75rem",
-        color: "#262A3A",
-        textTransform: "uppercase",
-        boxSizing: "border-box"
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minHeight: '4rem',
+        height: '100%',
+        width: '100%',
+        fontSize: '0.75rem',
+        color: '#262A3A',
+        textTransform: 'uppercase',
+        boxSizing: 'border-box',
       },
       pristine: {
-        borderWidth: "0.0625rem",
-        borderColor: "#AFB5C8",
-        borderStyle: "dashed",
-        backgroundColor: "#F0F1F5"
-      }
+        borderWidth: '0.0625rem',
+        borderColor: '#AFB5C8',
+        borderStyle: 'dashed',
+        backgroundColor: '#F0F1F5',
+      },
     };
-  }
+  },
 }))();
