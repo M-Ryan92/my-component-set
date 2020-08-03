@@ -1,7 +1,7 @@
 (() => ({
   name: 'MeComponentContainer',
   type: 'BODY_COMPONENT',
-  allowedTypes: ['CONTENT_COMPONENT'],
+  allowedTypes: ['BODY_COMPONENT', 'CONTAINER_COMPONENT', 'CONTENT_COMPONENT'],
   orientation: 'HORIZONTAL',
   jsx: (
     <div>
